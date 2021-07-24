@@ -53,6 +53,27 @@ TEMPLATES = [
     },
 ]
 
+#logger do service
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'WARNING',
+            'class': 'logging.FileHandler',
+            'filename': 'debug.log',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'WARNING',
+            'propagate': True,
+        },
+    },
+}
+
+
 WSGI_APPLICATION = 'Core.wsgi.application'
 
 
@@ -84,6 +105,11 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:8000",
 ]
 
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+    )
+}
 
 LANGUAGE_CODE = 'en-us'
 
