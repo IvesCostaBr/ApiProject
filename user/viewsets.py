@@ -9,7 +9,7 @@ from .models import Costumer
 
 class CostumerViewSet(viewsets.ModelViewSet):
     serializer_class = CostumerSerializer
-    permission_classes = (permissions.IsAuthenticated,)
+    # permission_classes = (permissions.IsAuthenticated,)
     http_method_names = ['get', 'post', 'delete', 'patch'] #metodos suportados
 
     def get_queryset(self):
@@ -37,10 +37,17 @@ class CostumerViewSet(viewsets.ModelViewSet):
     def retrieve(self, request, *args, **kwargs):
         return super(CostumerViewSet, self).retrieve(request, *args, **kwargs)
 
-    # @rest_api.action(methods=['post'], detail=True) Fixing now
-    # def reset_password(self, request):
-        
-    #     return Response({"Satus":"Action here"})
+    @rest_api.action(methods=['post'], detail=True)
+    def change_password(self, request, pk=None): #change password action
+        resp = ''
+        costumer = Costumer.objects.get(id=pk)
+        if (self.request.POST.get('new_password', None)):
+            costumer.set_password(self.request.POST['new_password'])
+            resp = 'updated'
+        else:
+            resp = 'error'
+
+        return Response({"status":resp})
 
 
 
