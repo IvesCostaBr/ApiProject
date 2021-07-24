@@ -14,16 +14,6 @@ class CostumerViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         return Costumer.objects.all()
-
-    def create(self, request, *args, **kwargs):
-        costumer = Costumer.objects.create_user(
-            first_name=request.POST.get('first_name'),
-            last_name=request.POST.get('last_name'),
-            cpf=request.POST.get('cpf'),
-            email=request.POST['email'], 
-            password=request.POST['password'],
-        )
-        return Response(costumer.values);
     
     def partial_update(self,request, *args, **kwargs):
         return super(CostumerViewSet, self).partial_update(request, *args, **kwargs)
@@ -50,6 +40,16 @@ class CostumerViewSet(viewsets.ModelViewSet):
         return Response({"status":resp})
 
 
+@rest_api.api_view(['GET'])
+def create_user(request):
+    costumer = Costumer.objects.create_user(
+        first_name=request.POST.get('first_name'),
+        last_name=request.POST.get('last_name'),
+        cpf=request.POST.get('cpf'),
+        email=request.POST['email'], 
+        password=request.POST['password'],
+    )
+    return Response(costumer.values);
 
    
 
