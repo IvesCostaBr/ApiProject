@@ -6,7 +6,7 @@ from rest_framework_simplejwt import views as jwt_views
 
 router = routers.DefaultRouter()
 #endpoints
-router.register(r'users', CostumerViewSet, basename="Costumer") #Acesso a view de usuarios
+router.register(r'users', CostumerViewSet, basename="Costumer") #Acesso a view de
 
 
 urlpatterns = [
