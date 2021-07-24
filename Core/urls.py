@@ -12,6 +12,6 @@ router.register(r'users', CostumerViewSet, basename="Costumer") #Acesso a view d
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(router.urls)),
-    path('api/token/', jwt_views.TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('api/token/refresh/', jwt_views.TokenRefreshView.as_view(), name='token_refresh'),
+    path('api/token/', jwt_views.TokenObtainPairView.as_view(), name='token_obtain_pair'), #urls de auth
+    path('api/token/refresh/', jwt_views.TokenRefreshView.as_view(), name='token_refresh'), #urls de auth
 ]
