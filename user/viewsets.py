@@ -37,10 +37,10 @@ class CostumerViewSet(viewsets.ModelViewSet):
     def retrieve(self, request, *args, **kwargs):
         return super(CostumerViewSet, self).retrieve(request, *args, **kwargs)
 
-    @rest_api.action(methods=['post'], detail=True)
-    def reset_password(self, request):
+    # @rest_api.action(methods=['post'], detail=True) Fixing now
+    # def reset_password(self, request):
         
-        return Response({"Satus":"Action here"})
+    #     return Response({"Satus":"Action here"})
 
 
 
